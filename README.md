@@ -1,7 +1,9 @@
 postr
 =====
 
-postr currently lives at [akerr.me/postr](http://www.akerr.me/postr) and will remain there until further notice.
+postr currently lives at [akerr.me/postr](https://www.akerr.me/postr) and will remain there until further notice.
+
+(Please note that the cert is currently self-signed so going to postr over HTTPS will display a warning on most modern browsers.)
 
 Back-end
 --------
