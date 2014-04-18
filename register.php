@@ -1,3 +1,8 @@
+<html>
+<head>
+	<style>body{background-color:#000;}</style>
+</head>
+<body>
 <?php
 
 	include('connect.php');
@@ -16,8 +21,8 @@
 	if (strcmp($email, $arr[0]['email']) == 0) {
 		
 		// **TO-DO**: Implement error
-		//echo '<META HTTP-EQUIV="Refresh" Content="1; URL=index.php#error2">';
-		echo 'HEY someone already exists!';
+		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=index.php#error2">';
+		echo '<p>Processing login...</p>';
 		
 	} else {
 		
@@ -30,3 +35,5 @@
 	}
 	
 ?>
+</body>
+</html>
