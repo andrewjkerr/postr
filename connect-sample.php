@@ -1,5 +1,7 @@
 <?php
 
+	session_start(); 
+	
 	// Connection variables - change me!
 	$host = "localhost";
 	$port = 5432;
