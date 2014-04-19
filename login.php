@@ -30,6 +30,7 @@
 	if ( $result && crypt($_POST['password'], $arr[0]['password_hash']) == $arr[0]['password_hash'] ) {
 		
 		$_SESSION['uid'] = $arr[0]['uid'];
+		$_SESSION['username'] = $arr[0]['username'];
 		// Forward to feed when feed is done!
 		echo '<br />
 		  <br />
