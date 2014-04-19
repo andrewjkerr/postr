@@ -1,16 +1,26 @@
 <html>
 <head>
-	<style>body{background-color:#000;}</style>
+	<title>Login | postr</title>
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <body>
+	<div id="content">
+		<header>
+			<h1>postr</h1>
+			<p>Social media - one post at a time.</p>
+		</header>
 <?php
 
 	include('connect.php');
 	
-	// Set variables from post
-	// **TO-DO**: SANITIZE AND VERIFY
+	echo '<br />
+		  <br />
+		  <h2>Processing login...</h2>';
+	
+	// Set variable from post
 	$username = $_POST['email'];
 	
+	// Query DB and fetch result
 	$query = pg_prepare($conn, "login", 'SELECT * FROM users WHERE email = $1 OR username = $1');
 	
 	$result = pg_execute($conn, "login", array($username));
@@ -21,13 +31,15 @@
 		
 		$_SESSION['uid'] = $arr[0]['uid'];
 		// Forward to feed when feed is done!
-		echo '<p>Login successful!';
+		echo '<br />
+		  <br />
+		  <h2>Login successful!</h2>';
 		
 	} else {
-		echo '<p>Processing login...</p>';
-		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html#error2">';
+		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html#error">';
 	}
 	
 ?>
+	</div>
 </body>
 </html>

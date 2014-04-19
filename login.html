@@ -1,82 +1,20 @@
 <html>
 <head>
-	<title>Login | Postr</title>
-	<style>
-		body{
-			text-align: center;
-			background-color: #000;
-			color: #fff;
-		}
-		header {
-			text-align: center;
-			font-family: Arial, Helvetica, sans-serif;
-		}
-		header h1 {
-			font-size: 72px;
-			margin-bottom: 0;
-		}
-		#content {
-			margin-top: 50px;
-		}
-		#login {
-			display: block;
-			margin: 0 auto;
-		}
-		input {
-			margin: 0 auto;
-			padding: 15px;
-			width: 300px;
-			border: 0;
-			font-size: 24px;
-		}
-		.no_margin {
-			margin: 0;
-		}
-		#email_login {
-			-webkit-border-top-left-radius: 5px;
-			-webkit-border-top-right-radius: 5px;
-			-moz-border-radius-topleft: 5px;
-			-moz-border-radius-topright: 5px;
-			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
-			border-bottom: 1px solid #bbb;
-		}
-		#password_login {
-			-webkit-border-bottom-right-radius: 5px;
-			-webkit-border-bottom-left-radius: 5px;
-			-moz-border-radius-bottomright: 5px;
-			-moz-border-radius-bottomleft: 5px;
-			border-bottom-right-radius: 5px;
-			border-bottom-left-radius: 5px;
-		}
-		#register_button {
-			background-color: #2C4762;
-			font-family: arial;
-			font-size: 20px;
-			padding: 15px;
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px;
-			cursor: pointer;
-			width: 270px;
-			text-align: center;
-			display: block;
-			margin: 0 auto;
-			font-size: 24px;
-			color: #fff;
-			text-decoration: none;
-		}
-		#login_button {
-			background-color: #CC5200;
-			font-family: arial;
-			color: #fff;
-			padding: 15px;
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-	</style>
+	<title>Login | postr</title>
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+	
+	<!-- Moar jQuery magic hax -->
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script>
+   		$(document).ready(function() {
+           	var curswitch = window.location.hash;
+           	$("#error").hide();
+           	if(curswitch == "#error") {
+   	        	$("#error").slideToggle(250);
+				$("#error p").text("ERROR: Email/password incorrect.");
+        	}
+		});
+	</script>
 </head>
 <body>
 	<div id="content">
@@ -84,11 +22,12 @@
 			<h1>postr</h1>
 			<p>Social media - one post at a time.</p>
 		</header>
+		<div id = "error"><p></p></div>
 		<div id = "register">
 			<form action="login.php" method="POST">
 				<p class="no_margin"><input type="text" id="email_login" name="email" placeholder="Email" /></p>
 				<p class="no_margin"><input type="password" id="password_login" name="password" placeholder="Password" /></p>
-				<p><input type="submit" id="login_button" value="Log in" /></p>
+				<p><input type="submit" id="login_button_2" value="Log in" /></p>
 			</form>
 		</div>
 		<hr style="width: 300px; background-color: #fff; margin-bottom: 15px" />
