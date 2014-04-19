@@ -80,19 +80,17 @@
 	$arr = pg_fetch_all($result);
 	
 	if (strcmp($email, $arr[0]['email']) == 0) {
-		
-		// **TO-DO**: Implement error
 		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=index.html#error-email-exists">';
-		echo '<p>Processing registration...</p>';
-		
 	} else {
 		
 		$query = pg_prepare($conn, "register", 'INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3)');
 		$password = crypt($_POST['password']);
 		$result = pg_execute($conn, "register", array($username, $email, $password)) or die('Registration error! Please try again.');
+		// Forward to login
 		echo '<br />
 		  <br />
-		  <h2>Registration successful!</h2>';
+		  <h2>Registration successful - please login!</h2>';
+		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html">';
 		
 	}
 ?>
