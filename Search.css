@@ -5,7 +5,7 @@
 
  }
  
- #menu a.hover, #menu a:hover {
+#menu a.hover, #menu a:hover {
  position: relative;
  color: orange;
  font-family: courier;
