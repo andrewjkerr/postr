@@ -15,12 +15,15 @@ if(!empty($_POST)) {
 
 	$dummyID = 1234;
 	$dummyUser = 'andres';
+	
+	$content;
+	$contentType;
 
 	//Not working
 	//$_POST = sanitize($_POST);
 
 	if(empty($_POST['post-type'])) {
-		die();
+		showForm();
 	}
 	
 	//Which form was submitted?
@@ -36,6 +39,11 @@ if(!empty($_POST)) {
 			$contentType = 0;
 			//Sanitize
 			$content = $_POST['text-post'];
+			
+			if (strlen($content) > 160) {
+				showForm('Posts must be no more than 160 characters.');
+			}
+			
 		}
 		elseif ($type == "image") {
 			$contentType = 1;
@@ -44,9 +52,9 @@ if(!empty($_POST)) {
 			//File must be below 10 MB
 			$mime = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/gif');
  
-            if (!isset($_FILES['image-post']) || ($_FILES['image-post']['error'] !== UPLOAD_ERR_OK) || $_FILES['image-post']['size'] > 1048576 || (in_array($_FILES['image-post']['type'], $mime) != TRUE)) {
+            if (!isset($_FILES['image-post']) || ($_FILES['image-post']['error'] !== UPLOAD_ERR_OK) || $_FILES['image-post']['size'] > 10485760 || (in_array($_FILES['image-post']['type'], $mime) != TRUE)) {
 				//Bad upload. Try again
-				die("A picture must be uploaded that is below 10MB.");
+				showForm('A picture must be uploaded that is below 10MB.');
             }	
 			
 			//To-Do
@@ -87,10 +95,10 @@ if(!empty($_POST)) {
 				$stmt->execute();
 					
 				if ($stmt->rowCount() == 1) {
-					echo 'Posted!';
+					showForm('Posted!');
 				}
 				else {
-					echo 'Post failed. Please try again.';
+					showForm('Post failed. Please try again.');
 				}
 			}
 			//INSERT NEW POST
@@ -104,16 +112,23 @@ if(!empty($_POST)) {
 				$stmt->execute();
 					
 				if ($stmt->rowCount() == 1) {
-					echo 'Posted!';
+					showForm('Posted!');
 				}
 				else {
-					echo 'Post failed. Please try again.';
+					showForm('Post failed. Please try again.');
 				}
 			}	
 		} catch (PDOException $e) {
 			echo 'ERROR: ' . $e->getMessage();
+			showForm();
 		}
 	}
+	else {
+		showForm();
+	}
+}
+else {
+	showForm();
 }
 
 function cleanInput($input) {
@@ -144,6 +159,13 @@ function sanitize($input) {
 	}
 	return $output;
 }
+
+function showForm($message="") {
+
+	if ($message != "") {
+		echo $message;
+	}
+
 ?>
 		<!-- Testing Text Post -->
 		<h2>Text</h2>
@@ -172,7 +194,8 @@ function sanitize($input) {
 			<input type="hidden" name="post-type" value="link">
 			<p><input type="text" name="link-post" placeholder="http://" /></p>
 			<input type="submit" value="Post and Upload">
-		</form>
+		</form>	
+<?php } ?>
 	</div>
 </body>
 </html>
