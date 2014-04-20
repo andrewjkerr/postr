@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Post</title>
+<link rel="stylesheet" type="text/css" href="Post.css"/>
+</head>
+<body>
+
+<!-- BEGIN: Header -->
+<div id="header_container">
+    <div id="header">
+    	<div id="logo">postr</div>
+        <div class="menu" class="default"> 
+        <a href="feed.php">home</a>  |  <a href="about.php">about</a>  |  <a href="search.php">search</a>  |  <a href="logout.php">logout</a>
+    	</div>
+    </div>
+</div>
+<!-- END: Header -->
+ 
+<!-- BEGIN: Page Content -->
+<div id="container">
+    <div id="content">
+    	@<a href="www.postr.me/image.php?abcdef">Andrew</a>
+    	<div class="myButton">FOLLOW</div>
+    	<div id="post"> First post on postr! I'm glad I am creating this for Databases! (not)</div>
+    	<div id="likes">1 like, 0 comments</div>
+    	<div class="myButton">LIKE</div>
+    	<form action="/html/tags/html_form_tag_action.cfm" method="post">
+			@user:
+			<textarea name="comments" cols="50" rows="5" id="comments">
+			</textarea>
+			<input class="myButton" type="submit" value="Submit"></div>
+		</form>
+    </div>
+</div>
+<!-- END: Page Content -->
+ 
+<!-- BEGIN: Footer -->
+<div id="footer_container">
+    <div id="footer">
+        <div class="menu" class="default"><a href="about.php">&copy; 2014 postr</a></div>
+    </div>
+</div>
+<!-- END: Footer -->
+
+
+
+</body>
+</html>

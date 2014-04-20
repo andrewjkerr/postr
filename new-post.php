@@ -7,7 +7,7 @@
 <body>
 	<?php include('header.php'); ?>
 	<br />
-	<div id="content" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
+	<div id="container" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
 		<hr style="background-color: #eee">
 		<h2 style="text-align: left"><?php echo '@' . $_SESSION['username']; ?></h2>
 	
