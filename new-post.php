@@ -33,7 +33,7 @@ if(empty($_SESSION['username'])){
 	<br />
 	<div id="container" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
 		<hr style="background-color: #eee">
-		<h2 style="text-align: left"><?php echo '@' . $_SESSION['username']; ?></h2>
+		<h2 style="text-align: left"><?php echo '<a href="post.php?username=' . $_SESSION['username'] . '"style="color:#fff">'; ?><?php echo '@' . $_SESSION['username']; ?></a></h2>
 	
 <?php
 
