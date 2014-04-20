@@ -186,3 +186,48 @@ input {
 	cursor: pointer;
 	width: 330px;
 }
+#post {
+	text-align: left;
+	font-size: 24px;
+	margin-bottom: 25px;
+}
+#likes {
+	width: 250px;
+	text-align: left;
+	margin-left: 100px;
+}
+.myButton {
+	background-color: #CC5200;
+	font-family: arial;
+	font-size: 14px;
+	padding: 10px 20px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+}
+#comments {
+	margin-top: 50px;
+	text-align: left;
+}
+#comments .row {
+	margin: 15px 0px;
+}
+.floatedCellUsername {
+    float:left;
+	margin-left: 0px;
+    width: 200px;
+    height: 30px;
+}
+.floatedCellComment {
+    float:right;
+    border-right: 1px solid black;
+    width: 600px;
+	padding: 0 10px;
+}
+.clear {
+    clear: both;
+}
