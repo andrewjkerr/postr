@@ -197,6 +197,7 @@ input {
 	text-align: left;
 	font-size: 24px;
 	margin-bottom: 25px;
+	word-wrap: break-word;
 }
 #likes {
 	width: 250px;
@@ -267,11 +268,13 @@ input {
     float:right;
     width: 600px;
 	padding: 0 10px;
+	word-wrap: break-word;
 }
 .floatedCellPost {
     float:right;
     width: 600px;
 	padding: 0 10px;
+	word-wrap: break-word;
 }
 .clear {
     clear: both;
