@@ -82,8 +82,8 @@ if(empty($_SESSION['username'])){
 					<div class="button_row">
 						<div class="floatedCellUsername"></div>
 						<div class="buttons" style="margin-left: 290px">
-							<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
-							<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
+							<a href="like.php?pid=' . $obj[$i]->pid . '&uid1=' . $_SESSION['uid'] . '" class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
+							<a href="post.php?username=' . $obj[$i]->username . '"class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
 						</div>
 					</div>';
 				}
