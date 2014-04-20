@@ -10,13 +10,30 @@ if(empty($_SESSION['username'])){
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#new-post-picture").hide();
+			$("#new-post-picture-header").click(function()
+			{
+				$("#new-post-text").hide();
+				$("#new-post-picture").slideToggle(500);
+			})
+			$("#new-post-text-header").click(function()
+			{
+				$("#new-post-picture").hide();
+				$("#new-post-text").slideToggle(500);
+			})
+		});
+	</script>
 </head>
 <body>
 	<?php include('header.php'); ?>
 	<br />
 	<div id="container" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
 		<hr style="background-color: #eee">
-		<h2 style="text-align: left"><?php echo '@' . $_SESSION['username']; ?></h2>
+		<h2 style="text-align: left"><?php echo '<a href="post.php?username=' . $_SESSION['username'] . '"style="color:#fff">'; ?><?php echo '@' . $_SESSION['username']; ?></a></h2>
 	
 <?php
 
@@ -69,7 +86,7 @@ if(!empty($_POST)) {
 			$content = 'Desktop/image.png';
 		}
 		else {
-			$contentType = 2;
+			$contentType = 1;
 			//Sanitize
 			$content = $_POST['link-post'];
 		}
@@ -144,34 +161,21 @@ function showForm($message="") {
 	}
 
 ?>
-		<!-- Testing Text Post -->
-		<h2>Text</h2>
-		<form method="post">
+		<h1 style="margin-bottom: 50px">Create New Post</h1>
+		<div id="new-post-buttons">
+			<div id="new-post-text-header">TEXT</div><div id="new-post-picture-header">PICTURE</div>	
+		</div>
+		<form method="post" id="new-post-text">
 			<input type="hidden" name="post-type" value="text">
-			<p><textarea id="text-post" name="text-post">Post anything!</textarea></p>
-			<input type="submit" value="Post">
+			<p><textarea id="text-post" name="text-post" cols=40 rows=5 placeholder="Post anything - limited to 160 characters!"></textarea></p>
+			<input type="submit" class="post_button" value="Post">
 		</form>
-		
-		<br />
-		
-		<!-- Testing Image Post -->
-		<!-- enctype for uploads -->
-		<!--h2>Image</h2>
-		<form method="post" enctype="multipart/form-data">
-			<input type="hidden" name="post-type" value="image">
-			<p><input type="file" name="image-post" /></p>
-			<input type="submit" value="Post and Upload">
-		</form-->
-		
-		<br />
-		
-		<!-- Testing Link Post -->
-		<h2>Link</h2>
-		<form method="post">
+		<form method="post" id="new-post-picture">
 			<input type="hidden" name="post-type" value="link">
+			<p>Need to host an image? Try <a href="https://imgur.com/">imgur!</a></p>
 			<p><input type="text" name="link-post" placeholder="http://" /></p>
-			<input type="submit" value="Post and Upload">
-		</form>	
+			<input type="submit" class="post_button"value="Post">
+		</form>
 <?php } ?>
 	</div>
 </body>
