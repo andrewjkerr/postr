@@ -1,57 +1,122 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html>
-<head>
-<title>@<?php echo $_SESSION['username']; ?> | postr</title>
-<link rel="stylesheet" type="text/css" href="style.css"/>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
+	<head>
+		<title>@<?php echo $_SESSION['username']; ?> | postr</title>
+		<link rel="stylesheet" type="text/css" href="style.css"/>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	</head>
+	<body>
 
 <?php include('header.php'); ?>
 <br />
- 
-<!-- BEGIN: Page Content -->
-<div id="content" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
-	<hr style="background-color: #eee">
-	<a class="myButton" style="float: right; margin-right: 25px; margin-top: 25px">FOLLOW</a>
-	<h2 style="width: 200px; font-size: 36px; text-align: left">@<?php echo $_SESSION['username']; ?></h2>
-	<br />
-	<div id="post"> First post on postr! I'm glad I am creating this for Databases! (not)</div>
-	<a class="myButton" style="width: 30px; float: left">LIKE</a>
-	<div id="likes">
-		1 like
-		<p style="margin: 0">0 comments</p>
+<?php
+	$username;
+
+	if(!empty($_GET['username'])) {
+		//sanitize please
+		$username = $_GET['username'];
+		
+		$connection = new PDO('pgsql:host=akerr.me;dbname=postr_dev', 'postgres', '@NDR0!D');
+		$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					
+		//Check to see if user exists
+		$stmt = $connection->prepare('SELECT * FROM users WHERE username = ?');
+		$stmt->bindParam(1, $username, PDO::PARAM_STR);
+		$stmt->execute();
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		
+		//User does not exist, redirect
+		if ($stmt->rowCount() != 1) {
+			echo '<META HTTP-EQUIV="Refresh" Content="1; URL=search.php">';
+			exit;
+		}
+		
+		$uid = 0;
+		foreach ($result as $row) {
+			$uid = $row['uid'];
+		}
+		
+		//Check to see if they have a post
+		$stmt = $connection->prepare('SELECT * FROM posts WHERE uid = ?');
+		$stmt->bindParam(1, $uid, PDO::PARAM_INT);
+		$stmt->execute();
+		$post = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		//Post does not exist, redirect
+		if ($stmt->rowCount() != 1) {
+			echo '<META HTTP-EQUIV="Refresh" Content="1; URL=search.php">';
+			exit;
+		}
+		
+		$pid = 0;
+		$content = "";
+		foreach ($post as $row) {
+			$pid = $row['pid'];
+			$content = $row['content'];
+		}
+			
+		//Count how many likes this post has
+		$stmt = $connection->prepare('SELECT * FROM likes WHERE pid = ?');
+		$stmt->bindParam(1, $pid, PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$likes = $stmt->rowCount();
+		
+		//Count how many comments this post has
+		$stmt = $connection->prepare('SELECT * FROM comments WHERE pid=?');
+		$stmt->bindParam(1, $pid, PDO::PARAM_INT);
+		$stmt->execute();
+		
+		$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$commentCount = $stmt->rowCount();
+		
+		//TO-DO
+		//ASSOCIATE ALL COMMENT_UID's WITH THEIR USERNAME
+		
+		showContent($content, $likes, $commentCount, $comments);
+	}
+	else {
+		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=search.php">';
+		exit;
+	}
+	
+function showContent($post, $likes, $commentCount, $comments) {
+?>
+	<!-- BEGIN: Page Content -->
+	<div id="content" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
+		<hr style="background-color: #eee">
+		<a class="myButton" style="float: right; margin-right: 25px; margin-top: 25px">FOLLOW</a>
+		<h2 style="width: 200px; font-size: 36px; text-align: left">@<?php echo $_SESSION['username']; ?></h2>
+		<br />
+		<div id="post"><?php echo $post;?></div>
+		<a class="myButton" style="width: 30px; float: left">LIKE</a>
+		<div id="likes">
+			<?php echo "{$likes} likes"; ?>
+			<p style="margin: 0"><?php echo "{$commentCount} comments";?></p>
+		</div>
+		<div id="comments">
+			<h2><u>Comments</u></h2>
+			<?php
+				foreach($comments as $comment) {
+					echo '<div class="row">';
+					echo 	'<div class="floatedCellUsername">' .$comment['comment_uid']. '</div>';
+					echo 	'<div class="floatedCellComment">' .$comment['comment']. '</div>';
+					echo 	'<div class="clear"></div>';
+					echo '</div>';
+				}
+			?>
+			<p>Add comment:</p>
+			<form action="submit_comment.php" method="POST">
+				<p><textarea name="comments" cols="50" rows="5" id="comment-box" name="comment">
+				</textarea></p>
+				<p><input class="myButton" type="submit" value="ADD COMMENT" style="width: 150px"></div></p>
+			</form>
+		</div>
 	</div>
-	<div id="comments">
-		<h2><u>Comments</u></h2>
-		<div class="row">
-			<div class="floatedCellUsername">@jack: </div>
-			<div class="floatedCellComment">This is a really really really really really really really really really really really long sentence.</div>
-			<div class="clear"></div>
-		</div>
-		<div class="row">
-			<div class="floatedCellUsername">@reallyobnoxiouslylongusername: </div>
-			<div class="floatedCellComment">This is a short sentence.</div>
-			<div class="clear"></div>
-		</div>
-		<div class="row">
-			<div class="floatedCellUsername">@bobbytables: </div>
-			<div class="floatedCellComment">Lol, SQL injection EVERYWHERE!</div>
-			<div class="clear"></div>
-		</div>
-		<p>Add comment:</p>
-		<form action="submit_comment.php" method="POST">
-			<p><textarea name="comments" cols="50" rows="5" id="comment-box" name="comment">
-			</textarea></p>
-			<p><input class="myButton" type="submit" value="ADD COMMENT" style="width: 150px"></div></p>
-		</form>
-	</div>
-</div>
-<!-- END: Page Content -->
-
-
-
-</body>
+	<!-- END: Page Content -->
+<?php } ?>
+	</body>
 </html>
