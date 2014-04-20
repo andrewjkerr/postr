@@ -276,3 +276,51 @@ input {
 .clear {
     clear: both;
 }
+#new-post-buttons {
+	display: block;
+	margin: 0 auto;
+}
+#new-post-text-header {
+	background-color: #2C4762;
+	font-family: arial;
+	font-size: 14px;
+	padding: 20px 45px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	display: inline;
+	width: 200px;
+}
+#new-post-picture-header {
+	background-color: #2C4762;
+	font-family: arial;
+	font-size: 14px;
+	padding: 20px 32px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	display: inline;
+	margin-left: 50px;
+}
+#new-post-text {
+	margin-top: 50px;
+}
+#new-post-picture {
+	margin-top: 50px;
+}
+.post_button {
+	background-color: #CC5200;
+	color: #fff;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
