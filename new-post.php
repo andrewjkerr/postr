@@ -1,26 +1,25 @@
+<?php session_start(); ?>
 <html>
 <head>
-	<title>New Post</title>
+	<title>New Post | postr</title>
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <body>
-	<div id="content">
-		<header>
-			<h1><?php echo 'username';?></h1>
-		</header>
+	<?php include('header.php'); ?>
+	<br />
+	<div id="content" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
+		<hr style="background-color: #eee">
+		<h2 style="text-align: left"><?php echo '@' . $_SESSION['username']; ?></h2>
 	
 <?php
 
 if(!empty($_POST)) {
 
-	$dummyID = 1234;
-	$dummyUser = 'andres';
+	$dummyID = $_SESSION['uid'];
+	$dummyUser = $_SESSION['username'];
 	
 	$content;
 	$contentType;
-
-	//Not working
-	//$_POST = sanitize($_POST);
 
 	if(empty($_POST['post-type'])) {
 		showForm();
@@ -131,35 +130,6 @@ else {
 	showForm();
 }
 
-function cleanInput($input) {
-
-	$search = array(
-	'@<script[^>]*?>.*?</script>@si',   // Strip out javascript
-	'@<[\/\!]*?[^<>]*?>@si',            // Strip out HTML tags
-	'@<style[^>]*?>.*?</style>@siU',    // Strip style tags properly
-	'@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments
-	);
-
-	$output = preg_replace($search, '', $input);
-	return $output;	
-}
-
-function sanitize($input) {
-	if (is_array($input)) {
-		foreach($input as $var=>$val) {
-			$output[$var] = sanitize($val);
-	    }
-	}
-	else {
-		if (get_magic_quotes_gpc()) {
-			$input = stripslashes($input);
-	    }
-	    $temp = cleanInput($input);
-		$output = $temp;
-	}
-	return $output;
-}
-
 function showForm($message="") {
 
 	if ($message != "") {
@@ -179,12 +149,12 @@ function showForm($message="") {
 		
 		<!-- Testing Image Post -->
 		<!-- enctype for uploads -->
-		<h2>Image</h2>
+		<!--h2>Image</h2>
 		<form method="post" enctype="multipart/form-data">
 			<input type="hidden" name="post-type" value="image">
 			<p><input type="file" name="image-post" /></p>
 			<input type="submit" value="Post and Upload">
-		</form>
+		</form-->
 		
 		<br />
 		
