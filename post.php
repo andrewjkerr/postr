@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>@<?php echo $_SESSION['username']; ?> | postr</title>
+		<title>@<?php echo $_GET['username']; ?> | postr</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 
@@ -66,33 +66,30 @@
 		$likes = $stmt->rowCount();
 		
 		//Count how many comments this post has
-		$stmt = $connection->prepare('SELECT * FROM comments WHERE pid=?');
+		$stmt = $connection->prepare('SELECT * FROM comments, users WHERE pid=? AND uid=comment_uid');
 		$stmt->bindParam(1, $pid, PDO::PARAM_INT);
 		$stmt->execute();
 		
 		$comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$commentCount = $stmt->rowCount();
 		
-		//TO-DO
-		//ASSOCIATE ALL COMMENT_UID's WITH THEIR USERNAME
-		
-		showContent($content, $likes, $commentCount, $comments);
+		showContent($pid, $content, $likes, $commentCount, $comments, $uid);
 	}
 	else {
 		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=search.php">';
 		exit;
 	}
 	
-function showContent($post, $likes, $commentCount, $comments) {
+function showContent($pid, $post, $likes, $commentCount, $comments, $uid) {
 ?>
 	<!-- BEGIN: Page Content -->
 	<div id="content" style="width: 900px; display: block; margin: 0 auto; padding-left: 50px;">
 		<hr style="background-color: #eee">
-		<a class="myButton" style="float: right; margin-right: 25px; margin-top: 25px">FOLLOW</a>
-		<h2 style="width: 200px; font-size: 36px; text-align: left">@<?php echo $_SESSION['username']; ?></h2>
+		<?php echo '<a href="follow.php?uid=' . $uid . '&uid1=' . $_SESSION['uid'] . '&username=' . $_GET['username'] . '" class="myButton" style="float: right; margin-right: 25px; margin-top: 25px">';?>FOLLOW</a>
+		<h2 style="width: 200px; font-size: 36px; text-align: left">@<?php echo $_GET['username']; ?></h2>
 		<br />
 		<div id="post"><?php echo $post;?></div>
-		<a class="myButton" style="width: 30px; float: left">LIKE</a>
+		<?php echo '<a href="like.php?pid=' . $pid . '&uid1=' . $_SESSION['uid'] . '&username=' . $_GET['username'] . '" class="myButton" style="width: 30px; float: left">' ?>LIKE</a>
 		<div id="likes">
 			<?php echo "{$likes} likes"; ?>
 			<p style="margin: 0"><?php echo "{$commentCount} comments";?></p>
@@ -102,16 +99,15 @@ function showContent($post, $likes, $commentCount, $comments) {
 			<?php
 				foreach($comments as $comment) {
 					echo '<div class="row">';
-					echo 	'<div class="floatedCellUsername">' .$comment['comment_uid']. '</div>';
+					echo 	'<div class="floatedCellUsername">' .$comment['username']. '</div>';
 					echo 	'<div class="floatedCellComment">' .$comment['comment']. '</div>';
 					echo 	'<div class="clear"></div>';
 					echo '</div>';
 				}
 			?>
 			<p>Add comment:</p>
-			<form action="submit_comment.php" method="POST">
-				<p><textarea name="comments" cols="50" rows="5" id="comment-box" name="comment">
-				</textarea></p>
+			<?php echo '<form action="comment.php?pid='. $pid . '&uid1=' . $_SESSION['uid'] . '&username=' . $_GET['username'] . '" method="POST">' ?>
+				<p><textarea cols="50" rows="5" id="comment-box" name="comment"></textarea></p>
 				<p><input class="myButton" type="submit" value="ADD COMMENT" style="width: 150px"></div></p>
 			</form>
 		</div>
