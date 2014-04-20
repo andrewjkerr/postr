@@ -4,6 +4,8 @@
 <head>
 <title>@<?php echo $_SESSION['username']; ?> | postr</title>
 <link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 
