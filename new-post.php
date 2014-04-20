@@ -86,7 +86,7 @@ if(!empty($_POST)) {
 			$content = 'Desktop/image.png';
 		}
 		else {
-			$contentType = 2;
+			$contentType = 1;
 			//Sanitize
 			$content = $_POST['link-post'];
 		}
