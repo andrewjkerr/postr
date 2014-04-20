@@ -55,7 +55,12 @@
 		$content = "";
 		foreach ($post as $row) {
 			$pid = $row['pid'];
+			$content_type = $row['content_type'];
 			$content = $row['content'];
+		}
+		
+		if($content_type == 1){
+			$content = '<img src="' . $content .'" style="width: 250px; height: 250px" />';
 		}
 			
 		//Count how many likes this post has
