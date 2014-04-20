@@ -104,7 +104,7 @@ function showContent($pid, $post, $likes, $commentCount, $comments, $uid) {
 			<?php
 				foreach($comments as $comment) {
 					echo '<div class="row">';
-					echo 	'<div class="floatedCellUsername">' .$comment['username']. '</div>';
+					echo 	'<div class="floatedCellUsername"><a href="post.php?username=' . $comment['username'] . '">@' .$comment['username']. '</a></div>';
 					echo 	'<div class="floatedCellComment">' .$comment['comment']. '</div>';
 					echo 	'<div class="clear"></div>';
 					echo '</div>';
