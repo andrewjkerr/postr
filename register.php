@@ -89,8 +89,8 @@
 		// Forward to login
 		echo '<br />
 		  <br />
-		  <h2>Registration successful - please login!</h2>';
-		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html">';
+		  <h2>Registration successful!</h2>';
+		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
 		
 	}
 ?>
