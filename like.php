@@ -28,7 +28,12 @@
 		echo '<br />
 		  <br />
 		  <h2>You have unliked this post!</h2>';
-		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+		if(isset($_GET['page'])){
+			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
+		}
+		else{
+			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+		}
 	}
 	else{
 		$query = pg_prepare($conn, "like", 'INSERT INTO likes VALUES($1, $2)');
@@ -36,7 +41,12 @@
 		echo '<br />
 		  <br />
 		  <h2>You have liked this post!</h2>';
-		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+  		if(isset($_GET['page'])){
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
+  		}
+  		else{
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+  		}
 	}
 
 ?>
