@@ -4,6 +4,7 @@ body{
 	color: #fff;
 	font-family: Arial, Helvetica, sans-serif;
 }
+/* used header tags for index/login, so id will be used from now on */
 header {
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
@@ -11,6 +12,45 @@ header {
 header h1 {
 	font-size: 72px;
 	margin-bottom: 0;
+}
+#header {
+	width: 900px;
+	height: 100px;
+	margin-top: 50px;
+	margin: 0 auto;
+	display: block;
+}
+#logo {
+	display: inline;
+	float: left;
+	padding: 25px;
+	font-size: 60px;
+	font-weight: bold;
+}
+#menu {
+	float: right;
+	margin-top: 65px;
+	font-size: 20px;
+}
+#menu a {
+	text-decoration: none;
+	color: #fff;
+}
+#menu a:hover {
+	font-weight: bold;
+	color: #CC5200;
+}
+#footer {
+	width: 200px;
+	float: right;
+}
+#footer a{
+	text-decoration: none;
+	color: #fff;
+}
+#footer a:hover {
+	font-weight: bold;
+	color: #CC5200;
 }
 #content {
 	margin-top: 50px;
@@ -134,4 +174,15 @@ input {
 	margin: 0 auto;
 	margin-bottom: 15px;
 	color: #fff;
+}
+#search_button {
+	background-color: #CC5200;
+	font-family: arial;
+	color: #fff;
+	padding: 15px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 330px;
 }

@@ -1,16 +1,4 @@
-#menu  {
- float: right;
- text-decoration: none;
- font-family: courier;
 
- }
- 
-#menu a.hover, #menu a:hover {
- position: relative;
- color: orange;
- font-family: courier;
- 
-}
  
  a {
 text-decoration: none;
@@ -20,25 +8,6 @@ font-size: 14pt;
 }
  
 
-#name {
-
-font-size: 45px;
-font-weight:bold;
-color: #fff;
-font-family: Arial;
-float: left
-} 
- 
-
-#top {
-
-position:relative;
-width: 960px;
-height: 400px; 
-background:#000; 
-margin: 5% auto .5em auto;
-
-}
 
 
 h1 {
