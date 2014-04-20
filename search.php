@@ -25,8 +25,5 @@
 		<p><input type="text" id="email" name="email" placeholder="Email"/>
 		<p><input type="submit" id="search_button" text="Search" />
 	</form>
-	
-	
-
 </body>
 </html>
