@@ -13,6 +13,8 @@
 
 	include('connect.php');
 	
+	session_start();
+	
 	echo '<br />
 		  <br />
 		  <h2>Processing registration...</h2>';
@@ -89,8 +91,8 @@
 		// Forward to login
 		echo '<br />
 		  <br />
-		  <h2>Registration successful!</h2>';
-		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
+		  <h2>Registration successful - please login.</h2>';
+		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=login.php">';
 		
 	}
 ?>

@@ -13,6 +13,8 @@
 
 	include('connect.php');
 	
+	session_start();
+	
 	echo '<br />
 		  <br />
 		  <h2>Processing login...</h2>';
