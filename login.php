@@ -35,6 +35,7 @@
 		echo '<br />
 		  <br />
 		  <h2>Login successful!</h2>';
+		  echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
 		
 	} else {
 		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html#error">';

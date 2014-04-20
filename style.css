@@ -13,6 +13,13 @@ header h1 {
 	font-size: 72px;
 	margin-bottom: 0;
 }
+a {
+	text-decoration: none;
+	color: #CC5200;
+}
+a:hover {
+	font-weight: bold;
+}
 #header {
 	width: 900px;
 	height: 100px;
@@ -209,12 +216,46 @@ input {
 	color: #fff;
 	text-decoration: none;
 }
+#feed_top {
+	margin-top: 50px;
+	text-align: left;
+}
+#feed_top .row {
+	margin: 15px 0px;
+}
 #comments {
 	margin-top: 50px;
 	text-align: left;
 }
 #comments .row {
 	margin: 15px 0px;
+}
+#feed {
+	margin-top: 50px;
+	text-align: left;
+}
+#feed .row {
+	margin: 15px 0px;
+}
+#feed .button_row {
+	margin-bottom: 35px;
+}
+.floatedCellFollowers {
+    float: left;
+    width: 180px;
+	padding: 0 10px;
+	border-right: 1px solid white;
+}
+.floatedCellFollowing {
+    float:left;
+    width: 160px;
+	padding: 0 10px;
+	margin-left: 20px;
+}
+.floatedCellNewPost {
+    float:right;
+    width: 180px;
+	padding: 0 10px;
 }
 .floatedCellUsername {
     float:left;
@@ -224,7 +265,11 @@ input {
 }
 .floatedCellComment {
     float:right;
-    border-right: 1px solid black;
+    width: 600px;
+	padding: 0 10px;
+}
+.floatedCellPost {
+    float:right;
     width: 600px;
 	padding: 0 10px;
 }
