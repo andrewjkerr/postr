@@ -327,3 +327,47 @@ input {
 	border-radius: 5px;
 	cursor: pointer;
 }
+#postr_team {
+	
+}
+#postr_team #andrew {
+	width: 400px;
+	text-align: center;
+	float: left;
+}
+#postr_team #andrew img{
+	width: 80%; 
+	height: 80%; 
+	border: 1px solid white; 
+}
+#postr_team #andres {
+	width: 400px;
+	text-align: center;
+	float: right;
+}
+#postr_team #andres img{
+	width: 80%; 
+	height: 80%; 
+	border: 1px solid white; 
+}
+#postr_team #omeed {
+	width: 400px;
+	text-align: center;
+	margin-top: 25px;
+	float: left;
+}
+#postr_team #omeed img{
+	width: 80%; 
+	height: 80%; 
+	border: 1px solid white; 
+}
+#postr_team #sam {
+	width: 400px;
+	text-align: center;
+	float: right;
+}
+#postr_team #sam img{
+	width: 80%; 
+	height: 80%; 
+	border: 1px solid white; 
+}
