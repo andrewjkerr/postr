@@ -50,54 +50,44 @@ if(empty($_SESSION['username'])){
 	
 		<div id="feed">
 			<h1>Posts</h1>
-			<div class="row">
-				<div class="floatedCellUsername"><a href="post.php?username=sam">@Sam</a></div>
-				<div class="floatedCellPost"><img src="http://placehold.it/250x250" /></div>
-				<div class="clear"></div>
-			</div>
-			<div class="button_row">
-				<div class="floatedCellUsername"></div>
-				<div class="buttons" style="margin-left: 290px">
-					<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
-					<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="floatedCellUsername"><a href="post.php?username=andres">@Andres</a></div>
-				<div class="floatedCellPost">Ugh, work again!</div>
-				<div class="clear"></div>
-			</div>
-			<div class="button_row">
-				<div class="floatedCellUsername"></div>
-				<div class="buttons" style="margin-left: 290px">
-					<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
-					<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="floatedCellUsername"><a href="post.php?username=grant">@Grant</a></div>
-				<div class="floatedCellPost">I'm definitely giving postr a 100%!</div>
-				<div class="clear"></div>
-			</div>
-			<div class="button_row">
-				<div class="floatedCellUsername"></div>
-				<div class="buttons" style="margin-left: 290px">
-					<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
-					<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="floatedCellUsername"><a href="post.php?username=grant">@reallyobnoxiouslylongusername</a></div>
-				<div class="floatedCellPost">This is a really really really really really really really really really really really long sentence.</div>
-				<div class="clear"></div>
-			</div>
-			<div class="button_row">
-				<div class="floatedCellUsername"></div>
-				<div class="buttons" style="margin-left: 290px">
-					<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
-					<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
-				</div>
-			</div>
+			<?php
+				$url = "http://akerr.me/postr/get-feed.php?uid=" . $_SESSION['uid'];
+				$json = file_get_contents($url);
+				$obj = json_decode($json);
+				if(isset($_GET['page'])) {
+					$page = $_GET['page'];
+					$page = $page * 10;
+					if($page + 10 < count($obj)){
+						$end = count($obj) % $page;
+					}
+					else{
+						$end = $page + 10;
+					}
+				}
+				else {
+					$page = 0;
+					$end = count($obj);
+				}
+				for($i = $page; $i < $end; $i++){
+					echo '<div class="row">
+						<div class="floatedCellUsername"><a href="post.php?username='. $obj[$i]->username . '">@' . $obj[$i]->username . '</a></div>';
+					if($obj[$i]->content_type == 1) {
+						echo '<div class="floatedCellPost"><img src="' . $obj[$i]->content . '" style="width: 250px; height: 250px" /></div>';
+					}
+					else{
+						echo '<div class="floatedCellPost">' . $obj[$i]->content . '</div>';
+					}
+					echo '<div class="clear"></div>
+					</div>
+					<div class="button_row">
+						<div class="floatedCellUsername"></div>
+						<div class="buttons" style="margin-left: 290px">
+							<a class="myButton" style="width: 30px; padding: 5px 10px">LIKE</a>
+							<a class="myButton" style="width: 100px; margin-left: 15px; padding: 5px 10px">COMMENT</a>
+						</div>
+					</div>';
+				}
+			?>
 		</div>
 
 	</div>
