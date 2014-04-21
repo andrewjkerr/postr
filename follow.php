@@ -1,3 +1,9 @@
+<?php session_start();
+if(empty($_SESSION['username'])){
+	echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html#error1">';
+	exit;
+}
+?>
 <html>
 <head>
 	<title>Follow | postr</title>
