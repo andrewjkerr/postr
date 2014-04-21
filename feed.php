@@ -71,7 +71,7 @@ if(empty($_SESSION['username'])){
 					}
 					else {
 						$page = 0;
-						$end = 10;
+						$end = count($obj);
 					}
 					for($i = $page; $i < $end; $i++){
 						echo '<div class="row">
