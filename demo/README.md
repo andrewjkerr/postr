@@ -53,4 +53,5 @@ Notes for the demo on Monday April 21, 2014. Please note the URL is [akerr.me/po
 48. Finally login as any user
 49. Go to about page
 50. Show team
-51. Done!
+51. Add https to show https support!
+52. Done!
