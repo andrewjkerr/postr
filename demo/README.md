@@ -54,4 +54,5 @@ Notes for the demo on Monday April 21, 2014. Please note the URL is [akerr.me/po
 49. Go to about page
 50. Show team
 51. Add https to show https support!
-52. Done!
+52. Easter egg time! :D
+53. Done!

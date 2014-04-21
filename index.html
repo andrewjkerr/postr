@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<script src="js/konami.js"></script>
 	<style>
 	a:hover{
 		font-weight: normal;
@@ -33,6 +34,8 @@
 				$("#error p").text("ERROR: Email or username already in use. Try logging in.");
         	}
 		});
+		var easter_egg = new Konami();
+		easter_egg.load('http://transformersrave.ytmnd.com/');
 	</script>
 </head>
 <body>
