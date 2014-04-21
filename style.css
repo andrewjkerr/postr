@@ -242,8 +242,9 @@ input {
 	margin-bottom: 35px;
 }
 .floatedCellFollowers {
+	margin-left: 75px;
     float: left;
-    width: 180px;
+    width: 155px;
 	padding: 0 10px;
 	border-right: 1px solid white;
 }
@@ -370,4 +371,8 @@ input {
 	width: 80%; 
 	height: 80%; 
 	border: 1px solid white; 
+}
+#founder_list {
+	font-size: 24px;
+	text-align: center;
 }
