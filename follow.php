@@ -1,8 +1,4 @@
 <?php session_start();
-if(empty($_SESSION['username'])){
-	echo '<META HTTP-EQUIV="Refresh" Content="1; URL=login.html#error1">';
-	exit;
-}
 ?>
 <html>
 <head>
@@ -24,7 +20,7 @@ if(empty($_SESSION['username'])){
 	$uid = $_GET['uid'];
 	$uid1 = $_SESSION['uid'];
 	$username = $_GET['username'];
-	if(!isset($_GET['pid']) || !isset($_GET['username'])){
+	if(!isset($_GET['uid']) || !isset($_GET['username'])){
 		echo '<br />
 		  <br />
 		  <h2>Error! Redirecting you...</h2>';
