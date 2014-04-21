@@ -76,12 +76,12 @@
 	}
 	
 	// Check to see whether the user already exists
-	$checkQuery = pg_prepare($conn, "register_check", 'SELECT email FROM users WHERE email = $1 or username = $2');
+	$checkQuery = pg_prepare($conn, "register_check", 'SELECT * FROM users WHERE email = $1 or username = $2');
 	
 	$result = pg_execute($conn, "register_check", array($email, $username)) or die("Database error!");
 	$arr = pg_fetch_all($result);
 	
-	if (strcmp($email, $arr[0]['email']) == 0) {
+	if (pg_num_rows($result) >= 1) {
 		echo '<META HTTP-EQUIV="Refresh" Content="1; URL=index.html#error-email-exists">';
 	} else {
 		
