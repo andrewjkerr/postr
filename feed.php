@@ -62,8 +62,8 @@ if(empty($_SESSION['username'])){
 					if(isset($_GET['page'])) {
 						$page = $_GET['page'];
 						$page = $page * 10;
-						if($page + 10 < count($obj)){
-							$end = count($obj) % $page;
+						if(($page + 10 < count($obj)) == FALSE) {
+							$end = (count($obj) - $page) + $page;
 						}
 						else{
 							$end = $page + 10;
@@ -71,7 +71,7 @@ if(empty($_SESSION['username'])){
 					}
 					else {
 						$page = 0;
-						$end = count($obj);
+						$end = 10;
 					}
 					for($i = $page; $i < $end; $i++){
 						echo '<div class="row">
@@ -92,10 +92,34 @@ if(empty($_SESSION['username'])){
 							</div>
 						</div>';
 					}
+					echo '</div>';
+					echo '<div id="feed-nav">';
+					if(isset($_GET['page'])) {
+						$next_page = $_GET['page'] + 1;
+						$back_page = $_GET['page'] - 1;
+						if(($page + 10 < count($obj)) == TRUE) {
+							if(strcmp($_GET['page'], "0") == 0){
+								echo '<a href="feed.php?page=' . $next_page . '" class="myButton" style="float:right; width: 200px">NEXT PAGE</a>';
+							} else{
+								echo '<a href="feed.php?page=' . $next_page . '" class="myButton" style="float:right; width: 200px">NEXT PAGE</a>';
+								echo '<a href="feed.php?page=' . $back_page . '" class="myButton" style="float:left; width: 200px">PREVIOUS PAGE</a>';
+							}
+						}
+						else{
+							if(strcmp($_GET['page'], "0") != 0){
+								echo '<a href="feed.php?page=' . $back_page . '" class="myButton" style="float:left; width: 200px">PREVIOUS PAGE</a>';
+							}
+						}
+					}
+					else {
+						if(($page + 10 < count($obj)) == TRUE) {
+							echo '<a href="feed.php?page=1" class="myButton" style="float:right; width: 200px">NEXT PAGE</a>';
+						}
+					}
+					echo '</div>';
 				}
 			?>
-		</div>
-
 	</div>
+	<div style="padding-bottom: 50px"></div>
 </body>
 </html>
