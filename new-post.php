@@ -106,6 +106,9 @@ if(!empty($_POST)) {
 			if (count($result) == 1) {
 				$postExists = true;
 			}
+			foreach ($result as $row) {
+				$pid = $row['pid'];
+			}
 				
 			//UPDATE OLD POST
 			if ($postExists) {
@@ -116,6 +119,12 @@ if(!empty($_POST)) {
 				$stmt->bindParam(3, $content, PDO::PARAM_STR);
 				$stmt->bindParam(4, $dummyID, PDO::PARAM_INT);
 				$stmt->execute();
+				$stmt2 = $connection->prepare('DELETE FROM comments WHERE pid = ?');
+				$stmt2->bindParam(1, $pid, PDO::PARAM_STR);
+				$stmt2->execute();
+				$stmt3 = $connection->prepare('DELETE FROM likes WHERE pid = ?');
+				$stmt3->bindParam(1, $pid, PDO::PARAM_STR);
+				$stmt3->execute();
 					
 				if ($stmt->rowCount() == 1) {
 					showForm('Posted!');
