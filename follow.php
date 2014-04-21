@@ -16,8 +16,20 @@
 	
 	// Currently GET requests for debugging
 	$uid = $_GET['uid'];
-	$uid1 = $_GET['uid1'];
+	$uid1 = $_SESSION['uid'];
 	$username = $_GET['username'];
+	if(!isset($_GET['pid']) || !isset($_GET['username'])){
+		echo '<br />
+		  <br />
+		  <h2>Error! Redirecting you...</h2>';
+  		if(!isset($_GET['username'])){
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=search.php">';
+  		}
+  		else{
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+  		}
+		exit;
+	}
 	$query = pg_prepare($conn, "checkiffollow", 'SELECT * FROM follows WHERE follow_uid = $1 AND follower_uid = $2');
 	$result = pg_execute($conn, "checkiffollow", array($uid, $uid1)) or die("error with #1");
 	$arr = pg_fetch_all($result);

@@ -16,7 +16,19 @@
 	
 	// Currently GET requests for debugging
 	$pid = $_GET['pid'];
-	$uid1 = $_GET['uid1'];
+	if(!isset($_GET['pid'])){
+		echo '<br />
+		  <br />
+		  <h2>Error! Redirecting you...</h2>';
+  		if(!isset($_GET['username'])){
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=feed.php">';
+  		}
+  		else{
+  			echo '<META HTTP-EQUIV="Refresh" Content="2; URL=post.php?username=' . $_GET['username'] . '">';
+  		}
+		exit;
+	}
+	$uid1 = $_SESSION['uid'];
 	$query = pg_prepare($conn, "checkifliked", 'SELECT * FROM likes WHERE pid = $1 AND like_uid = $2');
 	$result = pg_execute($conn, "checkifliked", array($pid, $uid1)) or die("error with #1");
 	$arr = pg_fetch_all($result);
