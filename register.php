@@ -92,7 +92,7 @@
 		echo '<br />
 		  <br />
 		  <h2>Registration successful - please login.</h2>';
-		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=login.php">';
+		echo '<META HTTP-EQUIV="Refresh" Content="2; URL=login.html">';
 		
 	}
 ?>
