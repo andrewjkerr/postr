@@ -18,7 +18,7 @@
 	
 	// Currently GET requests for debugging
 	$pid = $_GET['pid'];
-	if(!isset($_GET['pid'])){
+	if(!isset($_GET['pid']) || !isset($_SESSION['uid'])){
 		echo '<br />
 		  <br />
 		  <h2>Error! Redirecting you...</h2>';

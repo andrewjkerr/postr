@@ -20,7 +20,7 @@
 	$uid = $_GET['uid'];
 	$uid1 = $_SESSION['uid'];
 	$username = $_GET['username'];
-	if(!isset($_GET['uid']) || !isset($_GET['username'])){
+	if(!isset($_GET['uid']) || !isset($_GET['username']) || !isset($_SESSION['uid'])){
 		echo '<br />
 		  <br />
 		  <h2>Error! Redirecting you...</h2>';

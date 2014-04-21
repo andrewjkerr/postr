@@ -20,7 +20,7 @@
 	$pid = $_GET['pid'];
 	$username = $_GET['username'];
 	$comment = $_POST['comment'];
-	if(!isset($_GET['pid']) || !isset($_GET['username']) || !isset($_POST['comment'])){
+	if(!isset($_GET['pid']) || !isset($_GET['username']) || !isset($_POST['comment']) || !isset($_SESSION['uid'])){
 		echo '<br />
 		  <br />
 		  <h2>Error! Redirecting you...</h2>';
