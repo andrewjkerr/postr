@@ -14,7 +14,7 @@ postr is currently hosted on a Digital Ocean VPS with 512MB of RAM, 1 core CPU, 
 * nginx
 * php-fpm
 * OpenSSL (not required)
-* 
+
 About
 -----
 
