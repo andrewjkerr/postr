@@ -1,5 +1,5 @@
 CREATE TABLE users (
-uid SERIAL,
+uid INT AUTO_INCREMENT,
 username VARCHAR(30),
 email VARCHAR(255),
 password_hash VARCHAR(255),
@@ -8,7 +8,7 @@ UNIQUE (uid, username, email)
 );
 
 CREATE TABLE follows (
-fid SERIAL,
+fid INT AUTO_INCREMENT,
 follow_uid INT,
 follower_uid INT,
 PRIMARY KEY (fid),
@@ -18,7 +18,7 @@ UNIQUE (fid)
 );
 
 CREATE TABLE posts(
-pid SERIAL,
+pid INT AUTO_INCREMENT,
 uid INT,
 DATE time,
 content_type INT,
@@ -36,7 +36,7 @@ FOREIGN KEY (like_uid) REFERENCES users (uid)
 );
 
 CREATE TABLE comments (
-cid SERIAL,
+cid INT AUTO_INCREMENT,
 pid INT,
 DATE time,
 comment_uid INT,

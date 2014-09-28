@@ -8,8 +8,8 @@ i = 0
 while i < 5000 do
   
   # Generate random user ids
-  follow_uid = rand(501)
-  follower_uid = rand(501)
+  follow_uid = rand(500) + 1
+  follower_uid = rand(500) + 1
   
   if !follows[follow_uid].include?(follower_uid)
     insert_string = "INSERT INTO follows (follow_uid, follower_uid) VALUES (#{follow_uid}, #{follower_uid});\n"

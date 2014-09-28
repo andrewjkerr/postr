@@ -9,11 +9,11 @@ Faker::Config.locale = 'en-us'
 # Open the file
 file = File.open("insert-posts.sql", 'w')
 
-500.times do |i|
+499.times do |i|
   
   # Post id = user id
-  pid = i
-  uid = i
+  pid = i + 1
+  uid = i + 1
 
   # Generate post type
   # 0 - text

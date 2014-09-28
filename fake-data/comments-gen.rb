@@ -12,12 +12,12 @@ file = File.open("insert-comments.sql", 'w')
 j = 0
 comments = Hash.new {|h,k| h[k] = [] }
 
-500.times do |i|
-  pid = i
+499.times do |i|
+  pid = i + 1
 
   rand(50).times do
     # Generate random user id
-    comment_uid = rand(501)
+    comment_uid = rand(500) + 1
   
     if !comments[pid].include?(comment_uid)
       cid = j
